@@ -10,5 +10,14 @@ class UsersController < ApplicationController
   end
   def index
     @userd = User.all
+  
+  end
+  def create
+    super
+    if resource.save
+      set_flash_message :notice, :sined_up
+    end
+    
+    
   end
 end
