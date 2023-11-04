@@ -24,40 +24,49 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
+
              <% if user_signed_in? %>  
               <%= link_to user_path(current_user), class: 'nav-link text-white' do %>
-                <i class="fa-solid fa-house", style="color: #ffffff;"></i> Home
+                <i class="fa-solid fa-house" style="color: #ffffff;"></i> Home
               <% end %>
              <% else %>
               <%= link_to root_path, class: 'nav-link text-white' do %>
-                <i class="fa-solid fa-house", style="color: #ffffff;"></i> Home
+                <i class="fa-solid fa-house" style="color: #ffffff;"></i> Home
               <% end %>
              <% end %>
+             
+             
             <% if user_signed_in? %>
-            <li class="nav-item">
+             <li class="nav-item">
               <%= link_to users_path, class: 'nav-link text-white' do %>
-                <i class="fa-solid fa-users", style="color: #ffffff;"></i> Users
+                <i class="fa-solid fa-users" style="color: #ffffff;"></i> Users
               <% end %>
-            <li class="nav-item">
+             </li>
+            <% end %>
+            
+             <li class="nav-item">
               <%= link_to books_path, class: 'nav-link text-white' do %>
-            　　　<i class="fa-solid fa-book-open", style="color: #ffffff;" ></i> Books
-            　<% end %>
-            <li class="nav-item">
-              <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-white' do %>
-                <i class="fa-solid fa-right-from-bracket", style="color: #ffffff" ></i> Log out
+               <i class="fa-solid fa-book-open" style="color: #ffffff;"></i> Books
               <% end %>
+             </li>
+            <% if user_signed_in? %> 
+             <li class="nav-item">
+              <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-white' do %>
+                <i class="fa-solid fa-right-from-bracket" style="color: #ffffff" ></i> Log out
+              <% end %>
+             </li>
+            <% end %>
               
-            <% else %> 
+            <% unless user_signed_in? %>
               <%= link_to '/homes/about', class: 'nav-link text-white' do %>
-                 <i class="fa-solid fa-link", style="color: #ffffff;"></i> About
+                 <i class="fa-solid fa-link" style="color: #ffffff;"></i> About
               <% end %>
               <%= link_to new_user_registration_path, class: 'nav-link text-white' do %>
-                 <i class="fa-solid fa-user-plus", style="color: #ffffff;"></i> Sign up
+                 <i class="fa-solid fa-user-plus" style="color: #ffffff;"></i> Sign up
               <% end %>
               <%= link_to new_user_session_path, class: 'nav-link text-white' do %>
-                <i class="fa-solid fa-right-to-bracket", style="color: #ffffff;"></i> Log in
+                <i class="fa-solid fa-right-to-bracket" style="color: #ffffff;"></i> Log in
               <% end %>
-            
             <% end %>
             </ul>
           </div>
