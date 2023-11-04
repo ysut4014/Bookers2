@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   resources :books, only: [:edit, :index, :show]
   resources :users
   get "homes/about" => "homes#about", as: "about"
+  post '/books', to: 'books#create'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
