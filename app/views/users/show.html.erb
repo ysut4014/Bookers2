@@ -1,4 +1,10 @@
 <p id="notice"></p>
+<% if flash[:notice] %>
+  <p id="notice"><%= flash[:notice] %></p>
+<% end %>
+<% if flash[:alert] %>
+  <p id="alert"><%= flash[:alert] %></p>
+<% end %>
 <%= form_with model: @user, url: user_session_path do |f| %>
 
 mypade

@@ -9,8 +9,9 @@ class UsersController < ApplicationController
      @user = current_user
   end
   def index
-    @users = User.all
-  
+      @user = User.find_by(id: params[:id]) # ユーザーが存在しない場合、nilが返される
+  if @user.nil?
+  end
   end
   def create
     super
