@@ -13,12 +13,23 @@ class UsersController < ApplicationController
   if @user.nil?
   end
   end
-  def create
+  def create    
     super
     if resource.save
       set_flash_message :notice, :sined_up
     end
-    
-    
+  end
+  def update
+     @user = User.find_by(id: params[:id])
+   if @user.update(user_params)
+     tedirect_to @user, notice: 'User was successfully updated.'
+   else
+     render 'edit'
+　 end
+　private
+
+  def user_params
+     params.require(:user).permit(:username, :email, :password)
+  end
   end
 end

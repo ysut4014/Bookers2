@@ -1,0 +1,40 @@
+<body>
+ <main>
+  
+  <p id="notice"></p>
+  
+  <div class="container px-5 px-sm-0">
+   <div class="row">
+    <div class="col-md-3">
+    
+    <%= render 'books/list', books: @books %>
+
+    </div>
+
+   
+    <div class="col-md-8 offset-md-1">
+      <table class="table table-hover table-inverse custom-table">
+     <h2>Book detaill</h2>
+
+     <tr>
+      <td>
+       <% if @book.user.image.attached? %>
+        <%= image_tag @book.user.image, size: "80x80" %>
+       <% else %>
+        <%= image_tag 'default-image.jpg', size: "80x80" %>
+       <% end %><br>
+       <%= link_to @book.user.name, user_path(@book.user) %>
+      </td>
+      <td>
+       <%= link_to @book.title, book_path(@book) %>
+      </td>
+      <td>
+       <%= @book.body %>
+      </td>
+       </td>
+      </tr>
+     </table>
+   </div>
+  </div>
+ </main>
+</body>
