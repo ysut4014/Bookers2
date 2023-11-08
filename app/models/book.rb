@@ -1,7 +1,11 @@
 class Book < ApplicationRecord
-  has_one_attached :image  
-  belongs_to :user
+    has_one_attached :image  
+    belongs_to :user
     paginates_per 10
+    
+    validates :title, presence: true 
+    validates :body, presence: true
+    
     
     def get_image
     if image.attached?

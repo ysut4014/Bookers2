@@ -1,8 +1,17 @@
 <body>
  <main>
   
-  <p id="notice"></p>
-  
+  <% if flash[:notice] %>
+    <%= flash[:notice] %>
+  <% end %>
+  <% if @book.errors.any? %>
+   <%= @book.errors.count %>error
+    <ul>
+     <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+     <% end %>
+    </ul>
+  <% end %>
   <div class="container px-5 px-sm-0">
    <div class="row">
     <div class="col-md-3">
@@ -31,6 +40,13 @@
       <td>
        <%= @book.body %>
       </td>
+      <td>
+       <%= link_to "Edit", edit_book_path(@book), class: "btn btn-success btn-sm" %>
+      </td>
+      <td>
+       <%= link_to "Destroy", book_path(@book), method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-sm btn-danger" %>
+      </td>
+
        </td>
       </tr>
      </table>
