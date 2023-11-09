@@ -12,6 +12,9 @@
      <% end %>
     </ul>
   <% end %>
+   <p id="notice"></p>
+
+  
   <div class="container px-5 px-sm-0">
    <div class="row">
     <div class="col-md-3">
@@ -27,12 +30,18 @@
 
      <tr>
       <td>
-       <% if @book.user.image.attached? %>
-        <%= image_tag @book.user.image, size: "80x80" %>
-       <% else %>
-        <%= image_tag 'default-image.jpg', size: "80x80" %>
-       <% end %><br>
-       <%= link_to @book.user.name, user_path(@book.user) %>
+<% if user_signed_in? %>
+  <div class="user-info">
+    <% if @book.user.avatar.attached? %>
+      <%= image_tag @book.user.avatar, size: "100x100" %>
+    <% else %>
+      <%= image_tag 'default-image', size: "100x100" %>
+    <% end %> 
+    <p><%= @book.user.name %></p>
+    <%= link_to "View all posts by this user", user_books_path(@book.user) %>
+  </div>
+<% end %>
+<br>
       </td>
       <td>
        <%= link_to @book.title, book_path(@book) %>
@@ -41,10 +50,14 @@
        <%= @book.body %>
       </td>
       <td>
+      <% if user_signed_in? && @book.user == current_user %>
        <%= link_to "Edit", edit_book_path(@book), class: "btn btn-success btn-sm" %>
+      <% end %>
       </td>
       <td>
+      <% if user_signed_in? && @book.user == current_user %>
        <%= link_to "Destroy", book_path(@book), method: :delete, data: { confirm: "Are you sure?" }, class:"btn btn-sm btn-danger" %>
+      <% end %> 
       </td>
 
        </td>
