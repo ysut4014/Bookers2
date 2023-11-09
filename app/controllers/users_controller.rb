@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   def index
      @books = Book.all
      @users = User.all
-     @user = User.find_by(id: params[:id]) # ユーザーが存在しない場合、nilが返される
+     @user = User.find_by(id: params[:id]) 
   if @user.nil?
   end
   end
@@ -46,7 +46,7 @@ end
     if @user.update(user_params)
       redirect_to @user, notice: 'User was successfully updated.'
     else
-      flash[:error] = '入力エラーが発生しました。'
+      flash[:error] = 'error'
       render 'edit'
     end
   end
@@ -54,6 +54,6 @@ end
   private
 
   def user_params
-    params.require(:user).permit(:name, :introduction, :avatar)  # 必要に応じて他のカラムを追加
+    params.require(:user).permit(:name, :introduction, :avatar)
   end
 end
