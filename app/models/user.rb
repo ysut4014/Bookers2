@@ -17,7 +17,16 @@ class User < ApplicationRecord
  
  has_many :books, dependent: :destroy
  
+ validates :body, length: { maximum: 200 }
+ validates :body, presence: true
+ 
+ 
 
- has_one_attached :image
-
+ def profile_image
+    if avatar.attached
+     avatar
+    else
+     'default-profile-image'
+    end
+ end
 end

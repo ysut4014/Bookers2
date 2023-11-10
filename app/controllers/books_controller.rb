@@ -20,7 +20,7 @@ class BooksController < ApplicationController
        if @book.save
         redirect_to book_path(@book.id), notice: "Book created successfully."
        else
-        @books = Book.all
+           @books = Book.all
         render 'index'
         
        end
@@ -52,4 +52,3 @@ class BooksController < ApplicationController
        params.require(:book).permit(:title, :body)
     end
 end    
-
