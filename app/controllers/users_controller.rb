@@ -5,9 +5,9 @@ class UsersController < ApplicationController
      @user = User.find(params[:id])
   end
 
+
   def edit
      @user = current_user
-     user = User.find(params[:id])
      unless @user.id == current_user.id
        redirect_to books_path
      end
@@ -22,34 +22,33 @@ class UsersController < ApplicationController
   end
   end
   
-  def create    
-    super
-    if resource.save
-      set_flash_message :notice, :sined_up
-    end
-  end
-  
-  # app/controllers/users_controller.rb
+
 def destroy
   @user = User.find(params[:id])
+  if @user == current_user
   @user.destroy
   session[:user_id] = nil
   redirect_to root_path, notice: "Your account has been successfully deleted."
+  else
+  redirect_to root_path, alert: "You don't have permission to delete this user's account."
+  end
 end
 
   
-  def update
-    user = User.find(params[:id])
-    @user = User.find_by(id: params[:id])
-     unless @user.id == current_user.id
-     end
+def update
+  @user = User.find(params[:id])
+  if @user == current_user
     if @user.update(user_params)
       redirect_to @user, notice: 'User was successfully updated.'
     else
-      flash[:error] = 'error'
-      render 'edit'
+    flash[:error] = 'Error' 
+    render 'edit'
     end
+  else
+    redirect_to books_path, alert: "You don't have permission to edit this user's profile."
   end
+end
+
 
   private
 

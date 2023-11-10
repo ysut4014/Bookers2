@@ -44,11 +44,15 @@
              </li>
             <% end %>
             
+            <% if user_signed_in? %>
              <li class="nav-item">
               <%= link_to books_path, class: 'nav-link text-white' do %>
                <i class="fa-solid fa-book-open" style="color: #ffffff;"></i> Books
-              <% end %>
              </li>
+              <% end %>
+
+             
+            <% end %>
             <% if user_signed_in? %> 
              <li class="nav-item">
               <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-white' do %>
@@ -58,7 +62,7 @@
             <% end %>
               
             <% unless user_signed_in? %>
-              <%= link_to '/homes/about', class: 'nav-link text-white' do %>
+              <%= link_to homes_about_path, class: 'nav-link text-white' do %>
                  <i class="fa-solid fa-link" style="color: #ffffff;"></i> About
               <% end %>
               <%= link_to new_user_registration_path, class: 'nav-link text-white' do %>
