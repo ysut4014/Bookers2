@@ -18,6 +18,7 @@ class UsersController < ApplicationController
   end
 
   def index
+    @users = User.all
      @books = Book.all
      @users = User.all
      @user = User.find_by(id: params[:id]) 

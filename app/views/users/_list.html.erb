@@ -1,6 +1,4 @@
-    <h2>User info</h2>
   <% if user.avatar.attached? %>
-    <h2>User info</h2>
     <%= image_tag user.avatar, size: "100x100" %>
   <% else %>
     <%= image_tag 'default-image', size: "100x100" %>
@@ -15,14 +13,12 @@
       <td style="font-weight: bold;"><%= user.introduction %></td>
     </tr>
   </table>
-
-
+  
   <div class="row">
-    <%= link_to edit_user_path(user), class: 'btn btn-outline-secondary btn-block' do %>
-      <i class="fa-solid fa-user-gear" style="color: #696e77;"></i>
-    <% end %> 
+  <%= link_to edit_user_path(@user), class: 'btn btn-outline-secondary btn-block' do %>
+    <i class="fa-solid fa-user-gear" style="color: #696e77;"></i>
+  <% end %> 
   </div>
-
 
 <%= form_with model: Book.new, local: true do |f| %>
   <h2 class="mt-3">New book</h2>
