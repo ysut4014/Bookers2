@@ -28,7 +28,7 @@ class BooksController < ApplicationController
     def edit
         @book = Book.find(params[:id])
        if current_user != @book.user
-        redirect_to books_path, alert: '他のユーザーの投稿は編集できません。'
+        redirect_to books_path
        end
     end
        
