@@ -1,17 +1,20 @@
 class UsersController < ApplicationController
   def show
-     @user = current_user
-     @books = @user.books.page(params[:page]) 
+    # @user = current_user
+    # @books = @user.books.page(params[:page]) 
      @user = User.find(params[:id])
+     @books = @user.books
+     @book = Book.new
   end
 
 
   def edit
-     @user = current_user
-     unless @user.id == current_user.id
-       redirect_to books_path
-     end
      @user = User.find(params[:id])   
+     if @user == current_user
+       render "edit"
+     else
+      redirect_to user_path(current_user)
+     end
   end
 
   def index
@@ -19,9 +22,22 @@ class UsersController < ApplicationController
      @users = User.all
      @user = User.find_by(id: params[:id]) 
   if @user.nil?
+  else
+    @user_books = @user.books
   end
   end
   
+def create
+  
+  @user = User.new(user_params)
+  if @user.save
+    flash[:success] = 'Successfully created!'
+    redirect_to @user
+  else
+    flash.now[:error] = 'Error'
+    render 'new'
+  end
+end
 
 def destroy
   @user = User.find(params[:id])
@@ -53,6 +69,6 @@ end
   private
 
   def user_params
-    params.require(:user).permit(:name, :introduction, :avatar)
+    params.require(:user).permit(:name, :introduction, :avatar, :email)
   end
 end

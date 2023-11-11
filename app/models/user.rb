@@ -8,8 +8,8 @@ class User < ApplicationRecord
  validates :name, presence: true
  validates :name, length: { minimum: 2, maximum: 20 }
  validates :name, uniqueness: true
- validates :introduction, presence: true
  validates :introduction, length: { maximum: 50 }
+
  
  has_one_attached :avatar
        
@@ -17,16 +17,8 @@ class User < ApplicationRecord
  
  has_many :books, dependent: :destroy
  
- validates :body, length: { maximum: 200 }
- validates :body, presence: true
+ has_one_attached :image
  
  
 
- def profile_image
-    if avatar.attached
-     avatar
-    else
-     'default-profile-image'
-    end
- end
 end
