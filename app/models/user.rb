@@ -11,7 +11,7 @@ class User < ApplicationRecord
  validates :introduction, length: { maximum: 50 }
 
  
- has_one_attached :avatar
+
        
  has_one_attached :profile_image         
  

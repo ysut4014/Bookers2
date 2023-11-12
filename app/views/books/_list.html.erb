@@ -1,6 +1,6 @@
-  <% if user.avatar.attached? %>
+  <% if user.profile_image.attached? %>
     <h2>User info</h2>
-    <%= image_tag user.avatar, size: "100x100" %>
+    <%= image_tag user.profile_image, size: "100x100" %>
   <% else %>
     <%= image_tag 'default-image', size: "100x100" %>
   <% end %> 

@@ -7,8 +7,8 @@
     
 <% if user_signed_in? %>
   <h2>User info</h2>
-  <% if current_user.avatar.attached? %>
-    <%= image_tag current_user.avatar, size: "100x100" %>
+  <% if current_user.profile_image.attached? %>
+    <%= image_tag current_user.profile_image, size: "100x100" %>
   <% else %>
     <%= image_tag 'default-image', size: "100x100" %>
   <% end %> 
@@ -60,8 +60,8 @@
    　 <% @users.each do |user| %>
      <tr>
       <td>
-    　<% if user.avatar.attached? %>
-       <%= image_tag user.avatar, class: 'img-thumbnail', size: "100x100"%>
+    　<% if user.profile_image.attached? %>
+       <%= image_tag user.profile_image, class: 'img-thumbnail', size: "100x100"%>
       <% else %>
        <%= image_tag 'default-image.jpg', class: 'img-thumbnail', size: "100x100" %>
       <% end %>

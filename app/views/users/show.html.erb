@@ -11,8 +11,8 @@
     
 <% if user_signed_in? %>
   <h2>User info</h2>
-  <% if User.find(params[:id]).avatar.attached? %>
-    <%= image_tag User.find(params[:id]).avatar, size: "100x100" %>
+  <% if User.find(params[:id]).profile_image.attached? %>
+    <%= image_tag User.find(params[:id]).profile_image, size: "100x100" %>
   <% else %>
     <%= image_tag 'default-image', size: "100x100" %>
   <% end %> 
@@ -70,8 +70,8 @@
 <tr>
   <td>
   <%= link_to user_path(@user) do %>
-    <% if @user.avatar.attached? %>
-      <%= image_tag @user.avatar, size: "100x100" %>
+    <% if @user.profile_image.attached? %>
+      <%= image_tag @user.profile_image, size: "100x100" %>
     <% else %>
       <%= image_tag 'default-image', size: "100x100" %>
     <% end %>
